@@ -1,3 +1,19 @@
 
 setwd("/home/dlavenderstory/R_Git_iPlant/Sunday_scripts/output/")
-read.table("combined_gapMinder.tsv",sep = "\t")
+full<-read.table("combined_gapMinder.tsv",header = TRUE, sep = "\t")
+#Look at the year-GDP relationship for China, India, and Chile
+
+myset<-subset(full,country=="China"|country=="India"|country=="Chile")
+
+GDP<-myset$gdpPercap*myset$pop
+newset<-cbind(myset,GDP)
+plot1<-ggplot(data = myset, aes(x = year, y = GDP, color = country))
+
+plot1+geom_point(size = 2)
+
+
+#Calculate the Stats for each continent
+install.packages("doBy")
+library(doBy)
+summaryBy(lifeExp ~ continent, data = full, 
+          FUN = list(mean, max, min))
