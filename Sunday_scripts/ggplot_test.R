@@ -34,9 +34,11 @@ ggplot(birthwt, aes(factor(race), bwt))+geom_boxplot()
 
 library(RColorBrewer)
 df <- melt(iris, id.vars = "Species")
-ggplot(df, aes(Species, value, fill = variable))+
+plot1<-ggplot(df, aes(Species, value, fill = variable))+
     geom_bar(stat = "identity", position = "dodge")+
-    scale_fill_brewer(palette = "Set1")
+    scale_fill_brewer(palette = "Set2")
+
+plot2<-ggplot(df,aes(variable,value,fill = variable))+geom_bar(stat = "identity")+facet_grid(. ~ Species)
 
 head(birthwt)
 ggplot()
