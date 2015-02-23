@@ -17,3 +17,8 @@ install.packages("doBy")
 library(doBy)
 summaryBy(lifeExp ~ continent, data = full, 
           FUN = list(mean, max, min))
+ggplot(full, aes(x=lifeExp))+geom_histogram(fill = "steelblue", color = "black")
+
+ggplot(full, aes(x=lifeExp))+geom_histogram(binwidth = 1, fill = "steelblue", color = "black")
+
+
